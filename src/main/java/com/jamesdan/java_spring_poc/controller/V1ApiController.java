@@ -16,18 +16,18 @@ import org.springframework.web.bind.annotation.RestController;
 public class V1ApiController {
     private final CRUDService crudService;
     @PostMapping
-    public String postV1Api(@RequestParam String name) {
-        return crudService.create(name);
+    public String postV1Api(@RequestParam String name, @RequestParam int age) {
+        return crudService.create(name, age);
     }
 
     @GetMapping
-    public String getV1Api() {
-        return crudService.read();
+    public String getV1Api(@RequestParam Long id) {
+        return crudService.read(id);
     }
 
     @PutMapping
-    public String putV1Api(@RequestParam String name) {
-        return crudService.update(name);
+    public String putV1Api(@RequestParam String name, @RequestParam int age) {
+        return crudService.update(name, age);
     }
 
     @DeleteMapping
