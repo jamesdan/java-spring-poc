@@ -1,5 +1,7 @@
 package com.jamesdan.java_spring_poc.controller;
 
+import com.jamesdan.java_spring_poc.service.CRUDService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -8,27 +10,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/v1")
 public class V1ApiController {
+    private final CRUDService crudService;
     @PostMapping
     public String postV1Api(@RequestParam String name) {
-        return "Hello "+name+"! Welcoming you in Java Spring POC";
+        return crudService.create(name);
     }
 
     @GetMapping
     public String getV1Api() {
-        return "Hello from Java Spring POC v1 API";
+        return crudService.read();
     }
 
     @PutMapping
     public String putV1Api(@RequestParam String name) {
-        return "Hello "+name+"! You have been updated in Java Spring POC";
+        return crudService.update(name);
     }
 
     @DeleteMapping
     public String deleteV1Api(@RequestParam String name) {
-        return "Goodbye "+name+"! You have been removed from Java Spring POC";
+        return crudService.delete(name);
     }
 
 }
